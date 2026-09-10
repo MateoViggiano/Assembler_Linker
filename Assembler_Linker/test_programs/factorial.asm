@@ -1,3 +1,4 @@
+#global main
 #extern abc
 num:	i64 15
 main:	pushq rbp

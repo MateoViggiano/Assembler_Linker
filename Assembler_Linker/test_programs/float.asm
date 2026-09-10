@@ -1,3 +1,4 @@
+#global main
 main:	pushq rbp
 		movq rbp, rsp
 		subq rsp, 16
