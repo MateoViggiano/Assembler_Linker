@@ -1,5 +1,5 @@
 CXX := clang++
-CXXFLAGS := -std=c++17 -fsanitize=address
+CXXFLAGS := -std=c++20 -Wall -Wextra -pedantic -fsanitize=address
 SHELL := powershell.exe
 BINDIR := bin
 TARGETS := $(BINDIR)/vm.exe $(BINDIR)/vmasm.exe $(BINDIR)/vmlink.exe
@@ -20,7 +20,7 @@ $(BINDIR)/vmlink.exe: vmlink.cpp | $(BINDIR)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $< -o $@
 
 clean:
-	@foreach ($$f in "$(BINARYS)".Split(" ")) { if (Test-Path $$f) { Remove-Item $$f -Force } }
+	@if ("$(BINARYS)" -ne "") { foreach ($$f in "$(BINARYS)".Split(" ")) { if (Test-Path $$f) { Remove-Item $$f -Force } } }
 
 %.vmo: %.asm | $(BINDIR)/vmasm.exe
 	$(BINDIR)/vmasm.exe $<

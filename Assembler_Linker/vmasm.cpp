@@ -29,8 +29,13 @@ struct Mnemonics:Vector<String>{
 enum class TokType:char{unknown,label_decl,value,label,org,symbol,string,mnemonic,reg};
 struct Token:public String{
 	using String::operator=;
+	using String::String;
 	TokType type=TokType::unknown;
 	Token()=default;
+	Token(const Token& other)=default;
+	Token(Token&& other)=default;	
+	Token& operator=(const Token& other)=default;
+	Token& operator=(Token&& other)=default;
 	explicit Token(const char* s):String(s){}
 	Token(const String& s):String(s){}
 };
